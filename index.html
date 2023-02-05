@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app"></div>
+
+    <script>
+      
+        var d ='';
+        var e ='';
+        var f ='';
+       
+        var divPlus ='';
+        var click = '<button disabled>Bestill</button>';
+
+        updateView();
+        function updateView() {
+            document.getElementById('app').innerHTML = /*html*/ `
+
+            <div style="padding-bottom: 20px;">Gjør et valg:</div>
+            
+
+            Bunn: <input id="tykkBunn" type="radio" name="bunn" onchange="info('tykk')" ${d == 'tykk'? "checked" : ""} /> Tykk
+          <input id="tynnBunn" type="radio" name="bunn" onchange="info('tynn')" ${d == 'tynn'? "checked" : ""}/> Tynn <br/>
+
+            Fyll: <input id="fyllTaco" type="radio" name="fyll" onchange="info('taco')" ${e == 'taco'? "checked" : ""}/> Taco
+          <input id="fyllKylling" type="radio" name="fyll" onchange="info('kylling')" ${e == 'kylling'? "checked" : ""}/> Kylling
+          <input id="fyllBiff" type="radio" name="fyll" onchange="info('biff')" ${e == 'biff'? "checked" : ""}/> Biff <br/>
+
+            Størrelse: <input id="stor" type="radio" name="størrelse" onchange="info('stor')" ${f == 'stor'? "checked" : ""}/> Stor
+          <input id="liten" type="radio" name="størrelse" onchange="info('liten')" ${f == 'liten'? "checked" : ""}/> Liten <br/>
+
+          ${click} <br/>
+
+            Du har valgt: <br>
+            Bunn: ${d} <br>
+            Fyll: ${e} <br>
+            Størrelse: ${f} <br>
+            ${divPlus}
+            `;
+        }
+
+        function info(s) {
+            if (s=='tykk') d='tykk'; 
+            if (s=='tynn') d='tynn';   
+
+            if (s=='taco')e='taco';    
+            if (s=='kylling') e='kylling';
+            if (s=='biff') e='biff';  
+             
+            if (s=='stor') f='stor';   
+            if (s=='liten') f='liten';  
+
+             
+            if (d && e && f) {
+                divPlus = 'Du har fylt ut alt og klar til å bestille!!';
+                click = "<button onclick=alert('Bestilt!')>Bestill</button>";
+
+            } 
+
+            else {
+                divPlus = '';
+                if (!d) {
+                    divPlus += 'Du må velge bun<br/>';
+
+                }
+                if (!e) {
+                    divPlus += 'Du må velge fyll<br/>';
+                }
+                if (!f) {
+                    divPlus += 'Du må velge størrelse<br/>';
+                }
+
+            }
+
+
+                updateView();
+            
+
+
+        }
+
+    </script>
+</body>
+</html>
